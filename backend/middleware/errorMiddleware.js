@@ -2,6 +2,7 @@
 
 const notFound = (req, res, next) => {
     const error = new Error(`Not Found - ${req.originalUrl}`)
+    console.log(error)
     res.status(404)
     next(error)
 }

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv'
 import cookieParser from "cookie-parser";
 import path from 'path'
+import { fileURLToPath } from 'url';
 
 dotenv.config()
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
@@ -18,8 +19,11 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 app.use('/api/users', userRoutes)
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 if(process.env.NODE_ENV === 'production') {
-    const _dirname = path.resolve()
+    const __dirname = path.resolve()
     app.use(express.static(path.join(__dirname, 'frontend/dist')))
 
     app.get('*', (req, res) => {
@@ -27,10 +31,13 @@ if(process.env.NODE_ENV === 'production') {
     })
 } else {
     app.get('/', (req, res) => res.send('Server is ready'))
+    app.get('*', (req, res) => {
+        res.status(401).send('Not Found sdkjfnsjdk');
+    });
 }
 
 
 app.use(notFound)
 app.use(errorHandler)
 
-app.listen(port, () => console.log("Server started on port")) 
+app.listen(port, () => console.log(`Server started on port ${port}`)) 
