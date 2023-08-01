@@ -8,9 +8,9 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "npm run client && node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm run dev --prefix frontend",
+    "client": "npm run build --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
