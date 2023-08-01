@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://immense-stream-10229-548508c98736.herokuapp.com/',
+        target: 'https://calm-shore-11930-8a277de26b97.herokuapp.com/',
         changeOrigin: true
       }
     }
