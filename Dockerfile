@@ -24,4 +24,4 @@ WORKDIR /usr/source/app
 EXPOSE 8000
 
 # Define the command to run the app
-CMD ["node", "backend/server.js"]
+CMD ["sh", "-c", "npm run build --prefix frontend && node backend/server.js"]
