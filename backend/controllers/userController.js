@@ -16,6 +16,7 @@ const authUser = asyncHandler( async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            verified: user.verified,
         })
     } else {
         res.status(401)
@@ -42,7 +43,8 @@ const registerUser = asyncHandler( async(req, res) => {
     const user = await User.create({
         name,
         email,
-        password
+        password,
+        verified: false,
     })
 
     if(user) {
@@ -51,6 +53,7 @@ const registerUser = asyncHandler( async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            verified: user.verified,
         }) 
     } else {
         res.status(400)
@@ -86,6 +89,7 @@ const getUserProfile = asyncHandler( async(req, res) => {
         _id: req.user._id,
         name: req.user.name,
         email: req.user.email,
+        verified: req.user.verified,
     }
     res.status(200).json(user)
 })
